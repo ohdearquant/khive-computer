@@ -1,0 +1,42 @@
+# Install once: `uv run pre-commit install`. Every hook here also runs in CI (.github/workflows/ci.yml).
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-toml
+      - id: check-added-large-files
+        args: [--maxkb=500]
+      - id: check-merge-conflict
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.14.0
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format
+  - repo: https://github.com/DavidAnson/markdownlint-cli2
+    rev: v0.18.1
+    hooks:
+      - id: markdownlint-cli2
+  - repo: local
+    hooks:
+      - id: uv-lock
+        name: uv lock is current
+        entry: uv lock --check
+        language: system
+        files: ^(pyproject\.toml|uv\.lock)$
+        pass_filenames: false
+      - id: adr-index
+        name: ADR index is generated, not hand-edited
+        entry: uv run --no-project python3 -I docs/adr/_scripts/gen_adr_index.py
+        language: system
+        files: ^docs/adr/
+        pass_filenames: false
+      - id: docs-check
+        name: docs match the code (verbs, env vars, test names, wikilinks, cross-quotes)
+        entry: uv run python scripts/check_docs.py
+        language: system
+        files: \.(md|py)$
+        pass_filenames: false

@@ -1,0 +1,12 @@
+{
+  // Markdown lint for every document in the repository. Front matter is ignored by default.
+  "config": {
+    "default": true,
+    "MD013": { "line_length": 120, "code_blocks": false, "tables": false, "headings": false },
+    "MD024": { "siblings_only": true },
+    "MD033": false,
+    "MD041": false
+  },
+  "globs": ["**/*.md"],
+  "ignores": ["node_modules", ".venv", "computer", "data"]
+}

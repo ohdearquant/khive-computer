@@ -1,0 +1,19 @@
+services:
+  kc:
+    image: ghcr.io/ohdearquant/khive-computer:latest
+    build: .                       # `docker compose build` builds the base image from this tree
+    ports:
+      - "8810:8810"
+    volumes:
+      - kc_data:/data
+    environment:
+      KC_ACTION_USER: kc
+      KC_DRAIN_SECONDS: "300"
+      KC_SEAT_TOKEN: ${KC_SEAT_TOKEN:?put the first seat's token in .env (any secret; kc_ + 48 hex is the usual shape)}
+      # KC_SEAT_NAME: operator    # the first seat's name
+      # KC_MIN_FREE_GB: "5"        # refuse actions when /data has less than this free
+      GITHUB_TOKEN: ${GITHUB_TOKEN:-}   # lets git.push authenticate as the computer; set it in .env
+    stop_grace_period: 330s        # longer than KC_DRAIN_SECONDS so in-flight calls finish
+    restart: unless-stopped
+volumes:
+  kc_data:

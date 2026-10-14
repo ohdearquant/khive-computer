@@ -1,0 +1,55 @@
+[project]
+name = "khive-computer"
+version = "0.1.0"
+description = "A computer for agents over MCP: trees as values, refs with history, sandboxed actions, git at the edge"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [
+    { name = "OceanLi", email = "122793010+ohdearquant@users.noreply.github.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "blake3>=1.0.11",
+    "fastmcp>=3.4.7",
+]
+
+[project.urls]
+Homepage = "https://github.com/ohdearquant/khive-computer"
+Repository = "https://github.com/ohdearquant/khive-computer"
+Documentation = "https://github.com/ohdearquant/khive-computer/blob/main/docs/SPEC.md"
+Issues = "https://github.com/ohdearquant/khive-computer/issues"
+
+[project.scripts]
+kc = "khive_computer:main"
+
+[build-system]
+requires = ["uv_build>=0.12.7,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "pre-commit>=4.0",
+    "ruff>=0.14",
+]
+# tools an action may call inside the computer (ruff/pytest on PATH in the image and locally)
+toolbox = [
+    "pytest>=9.1.1",
+    "ruff>=0.14",
+]
+
+[tool.uv.workspace]
+members = []
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "RUF", "PLW", "PLE", "BLE", "SIM"]
+ignore = ["PLR0913", "PLR0912", "PLR0915", "PLR2004", "PLR0911", "E501"]
+
+[tool.pytest.ini_options]
+# the local computer lives in ./computer (gitignored): its slots hold other projects' tests
+testpaths = ["tests"]
