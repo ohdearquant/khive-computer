@@ -1,7 +1,7 @@
 [project]
 name = "khive-computer"
 version = "0.1.0"
-description = "A computer for agents over MCP: trees as values, refs with history, sandboxed actions, git at the edge"
+description = "Workspace for AI agents, over MCP: trees as values, refs with history, sandboxed actions, git at the edge"
 readme = "README.md"
 license = "MIT"
 license-files = ["LICENSE"]

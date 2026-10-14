@@ -1,14 +1,14 @@
 # khive computer
 
-**The model is the interface. khive is the computer.**
+**Workspace for AI agents.** The model is the interface; khive is the computer.
 
 [![PyPI](https://img.shields.io/pypi/v/khive-computer)](https://pypi.org/project/khive-computer/)
 [![CI](https://github.com/ohdearquant/khive-computer/actions/workflows/ci.yml/badge.svg)](https://github.com/ohdearquant/khive-computer/actions/workflows/ci.yml)
 [![Python 3.12+](https://img.shields.io/badge/python-3.12%2B-blue)](pyproject.toml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-A khive computer is where an agent's work lives: its identity, its working trees, its builds and its
-history, in one place, behind eight MCP tools. Any MCP client drives it: Claude Code with its native
+A khive computer is the workspace an agent works in: its identity, its working trees, its builds and
+its history, in one place, behind eight MCP tools. Any MCP client drives it: Claude Code with its native
 tools off, Codex, a local model, a script. The client holds a seat's token; every call is a tool call;
 nothing on the client side needs to persist.
 

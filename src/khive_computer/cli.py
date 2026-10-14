@@ -26,7 +26,7 @@ def _mcp_config(url: str, token: str) -> dict:
 
 
 def main(argv: list[str] | None = None) -> int:
-    ap = argparse.ArgumentParser(prog="kc", description="khive computer: a computer for agents, over MCP")
+    ap = argparse.ArgumentParser(prog="kc", description="khive computer: workspace for AI agents, over MCP")
     ap.add_argument("--root", help="computer directory (default $KC_ROOT or ./computer)")
     sub = ap.add_subparsers(dest="cmd", required=True)
 
